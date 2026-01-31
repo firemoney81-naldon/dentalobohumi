@@ -1,23 +1,352 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <!-- CSS 스타일 -->
+    <style>
+        /* 기본 스타일 */
+        body { font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; margin: 0; padding: 0; background-color: #f7f9fc; color: #333; }
+        header, section, footer { max-width: 960px; margin: 25px auto; padding: 30px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+        h1 { font-size: 2.2rem; color: #1a5c9d; line-height: 1.4; font-weight: 700; border-bottom: 2px solid #e0eaf3; padding-bottom: 10px; }
+        h2 { font-size: 1.8rem; color: #2e7bb0; margin-top: 30px; margin-bottom: 15px; border-left: 5px solid #2e7bb0; padding-left: 15px; font-weight: 700; }
+        h3 { font-size: 1.4rem; color: #4a4a4a; margin-top: 25px; margin-bottom: 10px; font-weight: 700; }
+        p, ul, ol, table { font-size: 1rem; color: #4a4a4a; margin-bottom: 20px; }
+        ul, ol { padding-left: 25px; }
+        li { margin-bottom: 10px; }
+        strong { font-weight: 700; color: #1a5c9d; }
+
+        /* 테이블 스타일 */
+        table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 20px 0; border: 1px solid #e0eaf3; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #e0eaf3; }
+        th { background-color: #f0f6fa; color: #1a5c9d; font-weight: 700; border-right: 1px solid #e0eaf3; }
+        td:last-child, th:last-child { border-right: none; }
+        tr:last-child td { border-bottom: none; }
+        .table-wrap { overflow-x: auto; margin-bottom: 20px; } /* 반응형 테이블 처리 */
+
+        /* CTA 버튼 스타일 */
+        .btn-cta {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff7f50; /* 따뜻한 색상으로 변경 */
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(255, 127, 80, 0.4);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-cta:hover {
+            background-color: #ff6347;
+            transform: translateY(-2px);
+        }
+
+        /* 네비게이션 스타일 */
+        nav { max-width: 960px; margin: 10px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); padding: 15px 20px; }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: space-between; }
+        nav li { margin: 5px 10px; }
+        nav a { color: #555; text-decoration: none; font-weight: 500; padding: 5px 10px; border-radius: 5px; transition: color 0.3s, background-color 0.3s; }
+        nav a:hover { color: #1a5c9d; background-color: #eaf3ff; }
+
+        /* 폼 스타일 */
+        form { background-color: #f0f6fa; padding: 30px; border-radius: 10px; }
+        form label { display: block; margin-bottom: 8px; color: #333; font-weight: 700; }
+        form input[type="text"], form input[type="tel"], form select, form textarea { width: calc(100% - 20px); padding: 10px; margin-bottom: 15px; border: 1px solid #d4e0eb; border-radius: 5px; box-sizing: content-box; font-size: 1rem; }
+        form button { width: 100%; }
+
+        /* 추가 스타일링 */
+        .highlight { background-color: #fffacd; padding: 10px; border-radius: 6px; display: block; margin-bottom: 20px; border-left: 4px solid #f0ad4e; }
+        .quote { font-style: italic; color: #666; border-left: 3px solid #ccc; padding-left: 15px; margin: 20px 0; }
+        .anchor { display: block; position: relative; top: -100px; visibility: hidden; }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            header, section, footer { padding: 20px; margin: 15px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            nav ul { flex-direction: column; }
+            nav li { margin: 5px 0; width: 100%; text-align: center; }
+            nav a { display: block; }
+            form input[type="text"], form input[type="tel"], form select, form textarea { width: 100%; }
+        }
+    </style>
+
+    <!-- Schema.org Article/WebPage 마크업(JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://domain.com/dental-insurance-duplicate-enrollment"
+      },
+      "headline": "치아보험 중복가입, 현명하게 대비하는 방법: 장점, 단점, 비교 완벽 분석 (2026년 최신 정보)",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://domain.com/dental_insurance_image.jpg",
+        "width": 1200,
+        "height": 600
+      },
+      "author": {
+        "@type": "Person",
+        "name": "보험 전문가"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "현명한 보험 선택 가이드",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://domain.com/logo.png"
+        }
+      },
+      "datePublished": "2026-01-01",
+      "dateModified": "2026-01-15",
+      "description": "2026년 치아보험 중복가입의 모든 것을 파헤칩니다. 실손형과 정액형의 차이를 이해하고, 임플란트, 충치 치료 비용 절감을 위한 최적의 가입 전략을 제시합니다. 장점과 단점, 2개 이상 가입 시 유의사항을 상세히 안내합니다."
+    }
+    </script>
+</head>
+
+<body>
+  <header>
+    <h1>치아보험 중복가입, 현명한 선택일까? (2026년 최신 분석)</h1>
+    <p>치아 치료 비용 부담, 중복가입을 통해 해결할 수 있을까요? 임플란트, 충치 등 고액 치료에 대비한 치아보험 2개 이상 가입 전략의 장점과 단점을 자세히 알아봅니다.</p>
+    <a href="#consultation" class="btn-cta">무료 견적 상담 받기</a>
+  </header>
+
+  <nav aria-label="페이지 내 이동">
+    <ul>
+      <li><a href="#intro">치아보험 중복가입이란?</a></li>
+      <li><a href="#advantages">중복가입의 장점</a></li>
+      <li><a href="#disadvantages">중복가입의 단점</a></li>
+      <li><a href="#comparison">정액형 vs 실손형</a></li>
+      <li><a href="#checklist">필수 체크리스트</a></li>
+      <li><a href="#pricing">평균 비용 및 견적 비교</a></li>
+      <li><a href="#consultation">1:1 맞춤 상담</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <span id="intro-anchor" class="anchor"></span>
+    <h2>치아보험 중복가입의 기본 이해</h2>
+    <p>치과 치료는 국민건강보험의 비급여 항목이 많아 환자 본인 부담금이 매우 높습니다. 특히 임플란트, 브릿지, 크라운과 같은 보철 치료는 한번에 수백만 원의 비용이 발생하기도 합니다. 이러한 고액 치료비에 대한 부담을 줄이고자, 많은 분들이 2개 이상의 치아보험에 가입하는 '치아보험 중복가입'을 고려합니다. 하지만 일반 실비보험과는 달리 치아보험은 중복 보장이 가능할 수도 있고, 불가능할 수도 있습니다. 무작정 여러 개의 보험에 가입하기 전에 중복가입의 원리를 정확히 이해해야 불필요한 보험료 낭비를 막을 수 있습니다.</p>
+    <h3>중복가입이 가능한 이유: 정액형 보험의 특징</h3>
+    <p>치아보험은 크게 '실손형(실제 손해액 보장)'과 '정액형(정해진 금액 보장)'으로 나뉩니다. 실손형 보험은 실제 발생한 치료비용을 기준으로 보장하지만, 치아보험 시장의 대부분을 차지하는 정액형 보험은 치료 행위 자체에 대해 사전에 약정한 금액을 지급합니다. 예를 들어, 임플란트 1개당 100만 원을 지급한다고 약정된 정액형 보험 2개에 가입했을 경우, 임플란트 치료 시 각 보험사로부터 100만 원씩 총 200만 원을 받을 수 있습니다. 이것이 바로 치아보험 중복가입의 핵심 원리입니다.</p>
+    <div class="highlight">
+        <p><strong>핵심 키워드:</strong> 치아보험 중복가입, 2개 가입, 임플란트 비용, 정액형 보험, 보장 한도, 치과 치료 비용 부담, 실손 정액형 차이</p>
+    </div>
+  </section>
+
+  <section id="advantages">
+    <span id="advantages-anchor" class="anchor"></span>
+    <h2>치아보험 중복가입의 장점 (중복보장 효과)</h2>
+    <p>치아보험 중복가입은 주로 고액 치료에 대비하여 보장 금액을 극대화하려는 목적으로 활용됩니다. 2026년 기준으로 임플란트 평균 비용은 개당 100만 원에서 200만 원 사이로 형성되어 있습니다. 일반적인 치아보험 한 개로는 이 비용을 모두 충당하기 어렵습니다.</p>
+    <h3>1. 임플란트, 브릿지 등 고액 치료 보장 극대화</h3>
+    <p>치아보험 중복가입의 가장 큰 장점은 고액 보철 치료에 대한 보장 금액을 늘릴 수 있다는 점입니다. 예를 들어, A보험사에서 임플란트 1개당 100만 원을 보장하고, B보험사에서 100만 원을 보장하는 정액형 상품에 가입한 경우를 가정해 봅시다. 임플란트 3개를 식립해야 하는 상황이 발생하면, A보험사에서 300만 원, B보험사에서 300만 원을 받아 총 600만 원의 보장 금액을 받을 수 있습니다. 이로써 실제 지출한 임플란트 비용보다 더 많은 금액을 보장받을 수도 있어 재정적 부담을 크게 줄일 수 있습니다.</p>
+    <h3>2. 보장 한도 및 횟수 증가</h3>
+    <p>대부분의 치아보험 상품은 1년에 보장하는 임플란트 갯수나 크라운 갯수에 제한을 둡니다. (예: 임플란트 연간 3개 한도) 중복가입 시, 각 보험사의 보장 한도가 합산되므로 연간 최대 보장 횟수가 늘어납니다. 치아 상태가 좋지 않아 여러 개의 치료가 한꺼번에 필요한 경우, 중복가입은 큰 도움이 될 수 있습니다.</p>
+    <h3>3. 비갱신형 중복가입으로 장기적인 안정성 확보</h3>
+    <p>비갱신형 상품으로 2개 이상 가입하면 초기 보험료는 높지만, 향후 보험료 인상 없이 장기간 안정적인 보장을 받을 수 있습니다. 치아보험의 주요 가입 연령대인 40~50대의 경우, 노년층으로 갈수록 치아 질환 위험이 높아지는 만큼 비갱신형 중복가입은 장기적인 관점에서 유리한 선택이 될 수 있습니다.</p>
+    <a href="#consultation" class="btn-cta">나에게 맞는 중복가입 전략 알아보기</a>
+  </section>
+
+  <section id="disadvantages">
+    <span id="disadvantages-anchor" class="anchor"></span>
+    <h2>치아보험 중복가입의 단점 및 주의사항</h2>
+    <p>치아보험 중복가입은 분명한 장점이 있지만, 신중하게 고려해야 할 단점과 유의사항도 존재합니다. 꼼꼼한 비교 없이 무분별하게 가입하면 보험료만 이중으로 내고 보장은 제대로 받지 못하는 결과를 초래할 수 있습니다.</p>
+    <h3>1. 보험료 이중 지출로 인한 부담</h3>
+    <p>가장 명확한 단점은 매월 내야 하는 보험료가 두 배 이상으로 늘어난다는 점입니다. 치아보험 평균 금액은 상품과 연령에 따라 다르지만, 월 2만원~5만원 수준입니다. 2개에 가입하면 최소 월 4만원~10만원을 납입해야 합니다. 10년 이상 납입 시 총 납입 금액이 수백만 원에 달할 수 있습니다. 만약 가입 기간 동안 고액 치료를 받을 일이 없다면, 중복으로 납입한 보험료가 그대로 낭비되는 것입니다.</p>
+    <h3>2. 면책기간 및 감액기간의 적용</h3>
+    <p>치아보험은 가입 후 일정 기간 동안 보장하지 않는 '면책기간'과 보장 금액의 일부만 지급하는 '감액기간'이 있습니다. 일반적으로 면책기간은 90일~1년, 감액기간은 1년~2년입니다. 중복가입 시, 각 보험사의 면책/감액기간이 개별적으로 적용됩니다. 만약 A보험 가입 6개월 후 B보험에 추가 가입했다면, B보험은 A보험보다 늦게 면책기간이 끝납니다. 이 기간 동안 치료를 받는다면, B보험에서는 보장을 받을 수 없어 중복가입의 장점이 무색해집니다.</p>
+    <h3>3. 실손형 보험의 중복 보장 불가 (비례 보상 원칙)</h3>
+    <p>치아보험 중에서도 극히 일부 상품은 '실손형'으로 판매됩니다. 실손형 상품에 중복 가입하는 것은 의미가 없습니다. 실손 보험은 실제 발생한 치료비용을 기준으로 비례 보상 원칙이 적용됩니다. 예를 들어 치료비 100만 원이 발생했는데 2개의 실손형 보험에 가입했다면, 각 보험사가 50만 원씩 나눠서 보상할 뿐 총 100만 원 이상의 금액을 받을 수 없습니다. 따라서 중복가입을 고려한다면 반드시 '정액형' 상품으로 가입해야 합니다.</p>
+    <div class="highlight">
+        <p><strong>핵심 키워드:</strong> 치아보험 단점, 보험료 낭비, 면책기간, 감액기간, 실손형 보험, 비례 보상, 보험료 이중 지출, 갱신형 단점</p>
+    </div>
+  </section>
+
+  <section id="comparison">
+    <span id="comparison-anchor" class="anchor"></span>
+    <h2>정액형 vs 실손형 치아보험: 중복가입의 핵심 차이점</h2>
+    <p>치아보험을 중복가입할 때 가장 중요한 기준은 보험 상품의 보장 방식입니다. 정액형과 실손형의 차이를 명확하게 이해하는 것이 현명한 가입 전략의 출발점입니다. 중복가입 시 정액형을 선택해야 하는 이유를 자세히 설명합니다.</p>
+    <h3>1. 정액형 치아보험: 중복가입에 적합한 유형</h3>
+    <p>정액형 치아보험은 '진단형' 또는 '개수형'이라고도 불립니다. 보험사별로 정해진 금액을 지급합니다. 예를 들어 "임플란트 1개당 100만원"과 같이 보장 금액이 정해져 있으며, 실제 치료비가 80만원이든 150만원이든 상관없이 약정한 금액을 지급합니다. 따라서 2개 이상의 정액형 보험에 가입하면 각각의 보험사로부터 약정된 금액을 모두 수령할 수 있습니다. 이것이 중복가입의 장점을 극대화하는 방식입니다. 다만, 보험료가 실손형보다 비싼 편이고, 보장 금액이 고정되어 있어 물가 상승에 따른 치료비 인상을 반영하지 못할 수도 있다는 단점도 있습니다.</p>
+    <h3>2. 실손형 치아보험: 중복가입 의미 없음</h3>
+    <p>실손형 치아보험은 실제 지출한 의료비에 대해 보험금이 지급됩니다. 가입자가 치과에 지불한 금액 중 일정 비율(예: 80%~90%)을 보상하는 방식입니다. 중복가입 시에는 보험사 간에 비례 분담하여 지급되므로 총 보장 금액이 늘어나지 않습니다. 즉, 실손형 보험에 2개 가입하면 보험료만 이중으로 내고 실질적인 보장 혜택은 증가하지 않습니다. 따라서 실손형 보험은 중복가입을 추천하지 않습니다.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>정액형 (중복가입 추천)</th>
+          <th>실손형 (중복가입 비추천)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>보장 방식</strong></td>
+          <td>치료 항목당 정해진 금액 지급 (개수/진단형)</td>
+          <td>실제 지출한 치료비의 일정 비율 지급 (비례 보상)</td>
+        </tr>
+        <tr>
+          <td><strong>중복가입 효과</strong></td>
+          <td>각 보험사별 보장금액 합산 가능 (중복보장)</td>
+          <td>보장 금액 증가 없음 (비례 분담)</td>
+        </tr>
+        <tr>
+          <td><strong>주요 대상 치료</strong></td>
+          <td>임플란트, 크라운 등 고액 보철 치료</td>
+          <td>충치, 신경 치료 등 보존 치료 포함</td>
+        </tr>
+        <tr>
+          <td><strong>보험료 수준</strong></td>
+          <td>비교적 높은 편</td>
+          <td>비교적 낮은 편</td>
+        </tr>
+        <tr>
+          <td><strong>가입 연령</strong></td>
+          <td>가입 연령 제한이 있을 수 있음</td>
+          <td>가입 연령 제한이 덜 엄격함</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="highlight">
+        <p><strong>핵심 키워드:</strong> 정액형, 실손형, 치아보험 비교, 치아보험 중복 보장, 비례 보상, 진단형, 보존 치료, 보철 치료, 중복가입 장단점</p>
+    </div>
+  </section>
+
+  <section id="checklist">
+    <span id="checklist-anchor" class="anchor"></span>
+    <h2>치아보험 중복가입 전 필수 체크리스트 (2026년 기준)</h2>
+    <p>성공적인 치아보험 중복가입을 위해서는 단순히 상품 2개를 가입하는 것을 넘어, 각 상품의 세부 조건을 꼼꼼히 확인해야 합니다. 2026년 보험 시장 동향을 반영한 필수 체크리스트입니다.</p>
+
+    <h3>1. 면책기간 및 감액기간 확인</h3>
+    <p>앞서 언급했듯이 면책기간과 감액기간은 매우 중요합니다. 특히, 보철 치료(임플란트, 크라운)의 면책기간은 보통 1년이며, 감액기간은 2년인 경우가 많습니다. 중복가입 시 A보험과 B보험의 면책기간을 동시에 체크하여 두 상품 모두 보장받을 수 있는 시점을 파악해야 합니다. 급하게 가입한다고 해서 곧바로 보장받을 수 있는 것이 아닙니다.</p>
+
+    <h3>2. 갱신형 vs 비갱신형 선택</h3>
+    <p>갱신형은 초기 보험료가 저렴하지만, 연령 증가와 치과 의료비 상승에 따라 보험료가 지속적으로 오릅니다. 반면 비갱신형은 초기 보험료가 비싸지만 한번 정해진 보험료를 만기까지 유지합니다. 중복가입 시 갱신형으로 2개를 가입하면 나중에 보험료 부담이 감당하기 어려울 정도로 커질 수 있으므로, 장기적인 관점에서 비갱신형을 추천합니다.</p>
+
+    <h3>3. 치아보험 가입 순위 및 보장 한도 비교</h3>
+    <p>치아보험 상품별로 임플란트 보장 한도가 다릅니다. 어떤 상품은 1개당 100만 원, 다른 상품은 150만 원을 보장할 수 있습니다. 2개 이상 가입할 경우, 보장 한도가 높은 상품을 우선적으로 선택하는 것이 유리합니다. 각 보험사의 '내돈내산 후기'나 '가입 순위'를 참고하여 보장 내용이 우수한 상품을 선정하는 것이 중요합니다.</p>
+
+    <h3>4. 보존 치료 vs 보철 치료 균형</h3>
+    <p>치아보험은 보존 치료(충치, 신경 치료 등)와 보철 치료(임플란트, 브릿지 등)로 보장을 구분합니다. 중복가입 시 보철 치료에만 집중된 상품 2개를 가입하는 것보다는, 한 상품은 보존 치료에 강하고 다른 상품은 보철 치료에 강한 형태로 조합하는 것이 더 효율적일 수 있습니다. 예를 들어, 보존 치료 보장이 약한 A보험과 보철 치료 보장이 약한 B보험을 조합하면, 각 보험의 단점을 보완하며 균형 있는 보장을 받을 수 있습니다.</p>
+
+    <h3>5. 건강 고지 사항 및 면책 조항 확인</h3>
+    <p>치아보험 가입 시 고지 의무(최근 1년 이내 치과 진료 이력, 최근 5년 이내 치과 치료 여부 등)를 정확하게 이행해야 합니다. 중복가입 시 각 보험사에 정확하게 고지해야 하며, 고의로 누락하면 나중에 보험금 지급을 거절당할 수 있습니다. 각 보험사의 면책 조항(예: 미용 목적 치료 제외, 영구치만 보장 등)도 꼼꼼히 확인해야 합니다.</p>
+
+    <div class="highlight">
+        <p><strong>핵심 키워드:</strong> 치아보험 가입 요령, 치아보험 체크리스트, 비갱신형 치아보험, 치아보험 순위, 임플란트 보장 한도, 면책 조항, 치아보험 추천</p>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <span id="pricing-anchor" class="anchor"></span>
+    <h2>치아보험 평균 비용 및 견적 비교 (2026년)</h2>
+    <p>치아보험의 비용은 연령, 성별, 가입 유형(갱신형/비갱신형), 보장 범위에 따라 크게 달라집니다. 특히 중복가입을 고려하는 경우, 총 납입 보험료를 정확하게 계산하여 장기적인 지출 계획을 세워야 합니다. 다음은 2026년 기준으로 40대 남성을 예시로 한 예상 비용입니다.</p>
+
+    <h3>치아보험 월별 예상 비용 비교표</h3>
+    <p><strong>조건:</strong> 40대 남성, 비갱신형 20년 납입, 주요 보장(임플란트 100만 원, 크라운 40만 원) 기준</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>가입 유형</th>
+          <th>월 보험료</th>
+          <th>총 납입액 (20년 기준)</th>
+          <th>특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>단독 가입 (1개)</td>
+          <td>약 35,000원</td>
+          <td>840만 원</td>
+          <td>기본적인 보장에 적합, 보험료 부담 적음</td>
+        </tr>
+        <tr>
+          <td>중복 가입 (2개)</td>
+          <td>약 70,000원</td>
+          <td>1,680만 원</td>
+          <td>보장 금액 2배, 높은 임플란트 보장 대비</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>중복가입 손익분기점 분석</h3>
+    <p>중복가입의 '내돈내산' 효과를 분석하기 위해서는 총 납입액 대비 예상 보장액을 비교해야 합니다. 2개 가입 시 20년간 총 1,680만 원을 납입한다고 가정해 봅시다. 만약 가입 기간 동안 임플란트 8개(개당 200만 원 보장 기준)를 치료받는다면 총 1,600만 원을 보장받을 수 있습니다. 즉, 임플란트 8개 이상이 필요한 경우에 중복가입이 유리해집니다.</p>
+
+    <h3>치아보험 저렴한곳 찾기</h3>
+    <p>치아보험을 저렴한곳에서 가입하려면 보험사별로 보장 항목을 비교해야 합니다. 보장 범위가 넓을수록, 보장 금액이 높을수록 보험료는 비싸집니다. 불필요한 보장을 줄이고 핵심 보장(임플란트, 크라운)에 집중하는 방식으로 설계하면 저렴한 비용으로 중복가입 효과를 누릴 수 있습니다.</p>
+    <a href="#consultation" class="btn-cta">나의 예상 견적 계산하기</a>
+  </section>
+
+  <section id="external-references">
+    <span id="external-references-anchor" class="anchor"></span>
+    <h2>신뢰성 있는 외부 정보 출처</h2>
+    <p>치아 건강 및 보험에 대한 객관적인 정보를 얻기 위해 공인된 기관의 자료를 참고하는 것이 중요합니다. 아래는 치아보험 가입 및 치과 치료에 도움이 되는 외부 정보 출처입니다.</p>
+    <ul>
+      <li><a href="https://www.fss.or.kr/" target="_blank">금융감독원 (FSS)</a>: 보험 상품의 감독 및 소비자 보호를 담당하는 기관으로, 보험 관련 분쟁 및 상품 정보 확인이 가능합니다.</li>
+      <li><a href="https://www.nhis.or.kr/" target="_blank">국민건강보험공단</a>: 건강보험 적용 범위 및 치과 치료 급여 기준에 대한 정보를 제공합니다.</li>
+      <li><a href="https://namu.wiki/w/%EC%B9%98%EC%95%84%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 치아보험</a>: 치아보험의 역사, 보장 내용, 상품 유형 등 일반적인 정보를 쉽게 찾아볼 수 있습니다.</li>
+      <li><a href="https://www.mohw.go.kr/react/index.jsp" target="_blank">보건복지부 (Ministry of Health and Welfare)</a>: 치과 의료 정책, 건강 증진 사업 등 보건 정책 관련 공식 정보를 제공합니다.</li>
+      <li><a href="http://www.kda.or.kr/" target="_blank">대한치과의사협회 (Korean Dental Association)</a>: 치과 의료 정보 및 최신 치과 치료 동향에 대한 전문가 의견을 제공합니다.</li>
+    </ul>
+  </section>
+
+  <section id="consultation">
+    <span id="consultation-anchor" class="anchor"></span>
+    <h2>치아보험 중복가입 1:1 맞춤 상담 신청</h2>
+    <p>치아보험 중복가입은 개인의 건강 상태, 재정 상황, 예상되는 치과 치료 계획에 따라 최적의 전략이 달라집니다. 아래 폼을 통해 전문 상담사에게 맞춤형 견적을 요청하여 현명한 선택을 하세요.</p>
+    <form action="/submit-consultation" method="POST" style="max-width:700px; margin:auto;">
+      <h3>개인 맞춤 분석을 위한 상세 정보 입력</h3>
+      <label for="name">이름<span style="color:red;">*</span></label><br />
+      <input type="text" id="name" name="name" required placeholder="홍길동" />
+
+      <label for="phone">연락처<span style="color:red;">*</span></label><br />
+      <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+      <label for="age">나이 및 성별<span style="color:red;">*</span></label><br />
+      <select id="age" name="age" required>
+        <option value="">나이 선택</option>
+        <option value="20대">20대</option>
+        <option value="30대">30대</option>
+        <option value="40대">40대</option>
+        <option value="50대">50대</option>
+        <option value="60대 이상">60대 이상</option>
+      </select>
+      <select id="gender" name="gender" required>
+        <option value="">성별 선택</option>
+        <option value="남성">남성</option>
+        <option value="여성">여성</option>
+      </select>
+
+      <label for="current-status">현재 치아 건강 상태<span style="color:red;">*</span></label><br />
+      <select id="current-status" name="current_status" required>
+        <option value="">현재 상태 선택</option>
+        <option value="양호">매우 양호 (정기 검진만)</option>
+        <option value="경미한 충치">경미한 충치 치료 필요</option>
+        <option value="보철 치료 필요">임플란트/크라운 등 보철 치료 예정</option>
+        <option value="복합 치료 필요">복합적인 치료 필요 (문의 필요)</option>
+      </select>
+
+      <label for="move-type">가입 희망 유형<span style="color:red;">*</span></label><br />
+      <select id="move-type" name="move_type" required>
+        <option value="">선택하세요</option>
+        <option value="단독 가입">단독 가입 (1개 상품)</option>
+        <option value="중복 가입">중복 가입 (2개 이상 상품)</option>
+        <option value="비교 견적">단독/중복 모두 비교 요청</option>
+      </select>
+
+      <label for="message">추가 요청 사항</label><br />
+      <textarea id="message" name="message" rows="4" placeholder="예: 비갱신형 위주로 추천해주세요. 임플란트 보장이 높은 상품을 찾습니다."></textarea>
+
+      <button type="submit" class="btn-cta">무료 견적 상담 요청하기</button>
+    </form>
+  </section>
+
+  
